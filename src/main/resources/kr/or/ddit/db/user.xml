@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="user">
+	<select id="selectUserAll" resultType="userVo">
+		select userId, name, pass, addr1, addr2, zipcd, birth, email, tel, profile
+		from jsp_user
+	</select>
+	<select id="selectUser" parameterType="String" resultType="userVo">
+		select * from jsp_user where userId = #{userId}
+	</select>
+	<select id="selectUserByVo" parameterType="userVo" resultType="userVo">
+		select * from jsp_user where userId = #{userId}
+	</select>
+	<select id="selectUserPageList" parameterType="pageVo" resultType="userVo">
+		select *
+		from
+		(select rownum as rnum, jsp_user.*
+		from jsp_user
+		order by userId)
+		where rnum between #{page}*#{pageSize}-(#{pageSize}-1) and #{page}*#{pageSize}
+	</select>
+</mapper>
