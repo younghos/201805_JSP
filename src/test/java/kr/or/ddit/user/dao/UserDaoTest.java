@@ -8,6 +8,9 @@ import java.util.List;
 import kr.or.ddit.user.model.UserVo;
 import kr.or.ddit.util.model.PageVo;
 
+import kr.or.ddit.user.dao.UserDaoInf;
+import kr.or.ddit.user.dao.UserDao;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -16,21 +19,20 @@ public class UserDaoTest {
 	private UserDaoInf userDao;
 
 	@Before
-	public void before(){
-		System.out.println("before");
+	public void setup(){
 		userDao = new UserDao();
 	}
 	
 	@Test
 	public void getSelectUserAllTest() {
 		/***Given : 주어진 상황***/
-
+		
 		/***When : 어떤 동작 수행(메소드)***/
 		List<UserVo> list = userDao.selectUserAll();
 		System.out.println("list : "+list);
 		
 		/***Then : 결과가 어떠해야하는지 정의***/
-		assertEquals(5, list.size());
+		assertEquals(105, list.size());
 	}
 	
 	@Test
@@ -80,6 +82,22 @@ public class UserDaoTest {
 		/***Then***/
 		assertEquals(10, pageList.size());
 
+	}
+	
+	/**
+	* Method : getUserCntTest
+	* 작성자 : pc24
+	* 변경이력 :
+	* Method 설명 : 사용자 전체 건수 조회 테스트
+	*/
+	@Test
+	public void getUserCntTest(){
+		/***Given***/
+
+		/***When***/
+		int totalUserCnt = userDao.getUserCnt();
+		/***Then***/
+		assertEquals(105, totalUserCnt);
 	}
 	
 

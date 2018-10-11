@@ -10,11 +10,20 @@ public class UserVo {
 	private Date birth; // 회원생일
 	private String addr1; // 회원주소
 	private String addr2; // 회원상세주소
-	private String zip; // 회원우편번호
+	private String zipcd; // 회원우편번호
 	private String email; // 회원이메일
 	private String tel; // 회원전화번호
 	private String profile; // 회원프로필경로
+	private int rnum;
 	
+	public int getRnum() {
+		return rnum;
+	}
+
+	public void setRnum(int rnum) {
+		this.rnum = rnum;
+	}
+
 	public UserVo() {
 		super();
 	}
@@ -43,12 +52,12 @@ public class UserVo {
 		this.addr2 = addr2;
 	}
 
-	public String getZip() {
-		return zip;
+	public String getZipCd() {
+		return zipcd;
 	}
 
-	public void setZip(String zip) {
-		this.zip = zip;
+	public void setZipCd(String zipcd) {
+		this.zipcd = zipcd;
 	}
 
 	public String getEmail() {
@@ -102,10 +111,13 @@ public class UserVo {
 
 	@Override
 	public String toString() {
-		return "UserVo [userId=" + userId + ", name=" + name + ", alias="
-				+ alias + ", birth=" + birth + ", pass=" + pass + ", addr1="
-				+ addr1 + ", addr2=" + addr2 + ", zip=" + zip + ", email="
-				+ email + ", tel=" + tel + ", profile=" + profile + "]";
+		return "UserVo [userId=" + userId + ", name=" + name + ", pass=" + pass
+				+ ", alias=" + alias + ", birth=" + birth + ", addr1=" + addr1
+				+ ", addr2=" + addr2 + ", zipcd=" + zipcd + ", email=" + email
+				+ ", tel=" + tel + ", profile=" + profile + ", rnum=" + rnum
+				+ "]";
 	}
+
+	
 	
 }

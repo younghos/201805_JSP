@@ -4,8 +4,12 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import java.util.List;
+import java.util.Map;
 
+import kr.or.ddit.user.dao.UserDao;
+import kr.or.ddit.user.dao.UserDaoInf;
 import kr.or.ddit.user.model.UserVo;
+import kr.or.ddit.util.model.PageVo;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -60,7 +64,7 @@ public class UserServiceTest {
 		System.out.println("list : "+list);
 		
 		/***Then : 결과가 어떠해야하는지 정의***/
-		assertEquals(5, list.size());
+		assertEquals(105, list.size());
 	}
 	
 	@Test
@@ -90,5 +94,22 @@ public class UserServiceTest {
 		assertNotNull(userVo2);
 		assertEquals("브라운", userVo2.getName());
 		assertEquals("brown", userVo2.getUserId());
+	}
+	
+	@Test
+	public void getSelectUserPageListTest(){
+		/***Given***/
+		
+		/***When***/
+		PageVo pageVo = new PageVo();
+		pageVo.setPage(1);
+		pageVo.setPageSize(10);
+		
+		Map<String, Object> pageList = userService.selectUserPageList(pageVo);
+		List<UserVo> userList = (List<UserVo>) pageList.get("userList");
+		
+		/***Then***/
+		assertEquals(10, userList.size());
+
 	}
 }

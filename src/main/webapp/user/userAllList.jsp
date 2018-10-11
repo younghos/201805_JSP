@@ -46,13 +46,13 @@
 								</tr>
 								<!-- userList loop -->
 								<% List<UserVo> userList = (List<UserVo>)request.getAttribute("userList"); %>
-								<%for(int i=0; i<userList.size();i++) { %>
+								<%for(UserVo uv : userList) { %>
 									<tr>
-										<td><%=i %></td>
-										<td><%=userList.get(i).getUserId() %></td>
-										<td><%=userList.get(i).getName() %></td>
+										<td><%=uv.getRnum()%></td>
+										<td><%=uv.getUserId() %></td>
+										<td><%=uv.getName()%></td>
 										<%
-											Date birth = userList.get(i).getBirth();
+											Date birth = uv.getBirth();
 											SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
 											String user_birth = sdf.format(birth);
 										%>

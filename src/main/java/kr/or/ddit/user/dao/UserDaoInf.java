@@ -13,4 +13,6 @@ public interface UserDaoInf {
 	public UserVo selectUser(UserVo userVo);
 	
 	public List<UserVo> selectUserPageList(PageVo pageVo);
+	
+	public int getUserCnt();
 }
