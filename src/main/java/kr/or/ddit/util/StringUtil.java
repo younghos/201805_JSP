@@ -21,4 +21,28 @@ public class StringUtil {
 		}
 		return fileName;
 	}
+
+	/**
+	* Method : getCookie
+	* 작성자 : pc24
+	* 변경이력 :
+	* @param cookieString
+	* @param string
+	* @return
+	* Method 설명 : cookieString에서 string을 추출
+	*/
+	public static String getCookie(String cookieString, String string) {
+		String str = "";
+		
+		String[] splits = cookieString.split("; ");
+		
+		for (String splits_str : splits) {
+			if(splits_str.indexOf(string+"=") >=0){
+				System.out.println(splits_str);
+				str = splits_str.substring(splits_str.indexOf("=")+1);
+				System.out.println(str);
+			}
+		}
+		return str;
+	}
 }
