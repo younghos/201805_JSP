@@ -58,5 +58,20 @@ public class UserService implements UserServiceInf{
 	public int getUserCnt() {
 		return userDao.getUserCnt();
 	}
+
+	@Override
+	public int insertUser(UserVo userVo) {
+		return userDao.insertUser(userVo);
+	}
+
+	@Override
+	public int deleteUser(String userId) {
+		return userDao.deleteUser(userId);
+	}
+
+	@Override
+	public int updateUser(UserVo userVo) {
+		return userDao.updateUser(userVo);
+	}
 	
 }

@@ -32,4 +32,34 @@ public interface UserServiceInf {
 	* Method 설명 : 사용자 전체 건수 조회
 	*/
 	public int getUserCnt();
+	
+	/**
+	* Method : insertUser
+	* 작성자 : pc24
+	* 변경이력 :
+	* @param userVo
+	* @return
+	* Method 설명 : 사용자 등록
+	*/
+	public int insertUser(UserVo userVo);
+	
+	/**
+	* Method : deleteUser
+	* 작성자 : pc24
+	* 변경이력 :
+	* @param userId
+	* @return
+	* Method 설명 : 사용자 삭제
+	*/
+	public int deleteUser(String userId);
+	
+	/**
+	* Method : updateUser
+	* 작성자 : pc24
+	* 변경이력 :
+	* @param userVo
+	* @return
+	* Method 설명 : 사용자 수정
+	*/
+	public int updateUser(UserVo userVo);
 }

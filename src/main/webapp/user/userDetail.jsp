@@ -16,7 +16,7 @@
 <link rel="icon" href="../../favicon.ico">
 
 <title>userDetail.jsp</title>
-
+<%UserVo userDetail = (UserVo)request.getAttribute("userVo"); %>
 <%@ include file="/common/basicLib.jsp"%>
 
 </head>
@@ -31,16 +31,16 @@
 
 			<%-- left --%>
 			<%@ include file="/common/left.jsp"%>
-			<%UserVo userDetail = (UserVo)request.getAttribute("userVo"); %>
+			
 			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-				<form class="form-horizontal" role="form">
+				<form class="form-horizontal" role="form" action="/userUpdateForm" method="get"  enctype="multipart/form-data">
 					<div class="form-group">
 						<label for="userNm" class="col-sm-2 control-label">사용자 사진</label>
 						<div class="col-sm-10">
 							<%if(userDetail.getProfile() != null) {%>
-								<img src="<%=userDetail.getProfile() %>" width="100" height="100"/>
+								<img src="<%=userDetail.getProfile() %>" width="200" height="200"/>
 							<%} else{%>
-								<img src="/profile/noImage.png" width="100" height="100"/>
+								<img src="/profile/noImage.png" width="200" height="200"/>
 							<%} %>
 						</div>
 					</div>
@@ -79,7 +79,12 @@
 					<div class="form-group">
 						<label for="pass" class="col-sm-2 control-label">생년월일</label>
 						<div class="col-sm-10">
-							<label class="control-label"><%=userDetail.getBirth() %></label>
+						<%
+							Date date = userDetail.getBirth();
+							SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+							String str = sdf.format(date);
+						%>
+							<label class="control-label"><%=str%></label>
 						</div>
 					</div>
 					<div class="form-group">
@@ -92,13 +97,12 @@
 						<label for="pass" class="col-sm-2 control-label">연락처</label>
 						<div class="col-sm-10">
 							<label class="control-label"><%=userDetail.getTel() %></label>
-<!-- 							<input type="text" class="form-control" id="userId" name="userId" -->
-<!-- 								placeholder="사용자 아이디"> -->
 						</div>
 					</div>
 					<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-10">
-							<button type="submit" class="btn btn-default">사용자 등록</button>
+							<button type="submit" class="btn btn-default">수정</button>
+							<input type="hidden" name="userId" value="<%=userDetail.getUserId() %>"/>
 						</div>
 					</div>
 				</form>				

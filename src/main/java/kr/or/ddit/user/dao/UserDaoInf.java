@@ -15,4 +15,10 @@ public interface UserDaoInf {
 	public List<UserVo> selectUserPageList(PageVo pageVo);
 	
 	public int getUserCnt();
+	
+	public int insertUser(UserVo userVo);
+	
+	public int deleteUser(String userId);
+	
+	public int updateUser(UserVo userVo);
 }

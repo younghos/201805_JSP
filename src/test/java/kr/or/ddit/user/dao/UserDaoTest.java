@@ -3,11 +3,17 @@ package kr.or.ddit.user.dao;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
-import kr.or.ddit.user.model.UserVo;
-import kr.or.ddit.util.model.PageVo;
+import javax.servlet.http.Part;
 
+import kr.or.ddit.user.model.UserVo;
+import kr.or.ddit.util.StringUtil;
+import kr.or.ddit.util.model.PageVo;
 import kr.or.ddit.user.dao.UserDaoInf;
 import kr.or.ddit.user.dao.UserDao;
 
@@ -17,10 +23,12 @@ import org.junit.Test;
 public class UserDaoTest {
 
 	private UserDaoInf userDao;
-
+	private final String TEST_USER_ID = "testUser";
+	
 	@Before
 	public void setup(){
 		userDao = new UserDao();
+		userDao.deleteUser(TEST_USER_ID);
 	}
 	
 	@Test
@@ -100,5 +108,92 @@ public class UserDaoTest {
 		assertEquals(105, totalUserCnt);
 	}
 	
+	/**
+	* Method : insertUserTest
+	* 작성자 : pc24
+	* 변경이력 :
+	* Method 설명 : 사용자 등록 테스트
+	*/
+	@Test
+	public void insertUserTest(){
+		/***Given***/
+		// userVo 생성
+		UserVo userVo = new UserVo();
+		userVo.setUserId("testUser");
+		userVo.setName("testName");
+		userVo.setPass("testPass");
+		userVo.setAddr1("testAddr1");
+		userVo.setAddr2("testAddr2");
+		userVo.setZipCd("11111");
+		String str = "2018-10-12";
+		DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		Date date;
+		try {
+			date = format.parse(str);
+			userVo.setBirth(date);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
+		userVo.setEmail("testUser@gmail.com");
+		userVo.setTel("042-1111-2222");
+
+		/***When***/
+		int insertCnt = userDao.insertUser(userVo);
+		
+		/***Then***/
+		assertEquals(1, insertCnt);
+	}
+	
+//	/**
+//	* Method : deleteUserTest
+//	* 작성자 : pc24
+//	* 변경이력 :
+//	* Method 설명 : 사용자 삭제 테스트
+//	*/
+//	@Test
+//	public void deleteUserTest(){
+//		/***Given***/
+//		String userId = "testUser";
+//
+//		/***When***/
+//		int deleteCnt = userDao.deleteUser(userId);
+//		
+//		/***Then***/
+//		assertEquals(1, deleteCnt);
+//	}
+	
+	@Test
+	public void updateUserTest(){
+		/***Given***/
+		// userVo 생성
+		UserVo userVo = new UserVo();
+		userVo.setProfile("null");
+		userVo.setUserId("testUser");
+		userVo.setName("testName");
+		userVo.setPass("testPass");
+		userVo.setAddr1("testAddr1");
+		userVo.setAddr2("testAddr2");
+		userVo.setZipCd("11111");
+		String str = "2018-10-12";
+		DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		Date date;
+		try {
+			date = format.parse(str);
+			userVo.setBirth(date);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
+		userVo.setEmail("testUser@gmail.com");
+		userVo.setTel("042-1111-2222");
+
+		/***When***/
+		int updateCnt = userDao.updateUser(userVo);
+		
+		/***Then***/
+		assertEquals(1, updateCnt);
+
+	}
 
 }

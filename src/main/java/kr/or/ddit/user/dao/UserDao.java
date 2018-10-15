@@ -15,7 +15,7 @@ public class UserDao implements UserDaoInf{
 		SqlSession session = factory.openSession();
 		
 		List<UserVo> list = session.selectList("user.selectUserAll");
-		session.commit();
+//		session.commit();
 //		session.rollback();
 		session.close();
 		
@@ -27,7 +27,6 @@ public class UserDao implements UserDaoInf{
 		SqlSession session = factory.openSession();
 		
 		UserVo userVo = session.selectOne("user.selectUser", user_id); 
-		session.commit();
 		session.close();
 		
 		return userVo;
@@ -38,7 +37,6 @@ public class UserDao implements UserDaoInf{
 		SqlSession session = factory.openSession();
 		
 		UserVo userVo2 = session.selectOne("user.selectUserByVo", userVo);
-		session.commit();
 		session.close();
 		
 		return userVo2;
@@ -49,7 +47,6 @@ public class UserDao implements UserDaoInf{
 		SqlSession session = factory.openSession();
 		
 		List<UserVo> pageList = session.selectList("user.selectUserPageList", pageVo);
-		session.commit();
 		session.close();
 		
 		return pageList;
@@ -69,9 +66,74 @@ public class UserDao implements UserDaoInf{
 		SqlSession session = factory.openSession();
 		
 		int totalUserCnt = session.selectOne("user.getUserCnt");
-		session.commit();
 		session.close();
 		
 		return totalUserCnt;
 	}
+
+	/**
+	* Method : insertUser
+	* 작성자 : pc24
+	* 변경이력 :
+	* @param userVo
+	* @return
+	* Method 설명 : 사용자 등록
+	*/
+	@Override
+	public int insertUser(UserVo userVo) {
+		
+		SqlSessionFactory factory = SqlFactoryBuilder.getSqlSessionFactory();
+		SqlSession session = factory.openSession();
+		
+		int insertCnt = session.insert("user.insertUser", userVo);
+		
+		session.commit();
+		session.close();
+		
+		return insertCnt;
+	}
+
+	/**
+	* Method : deleteUser
+	* 작성자 : pc24
+	* 변경이력 :
+	* @param userId
+	* @return
+	* Method 설명 : 사용자 삭제
+	*/
+	@Override
+	public int deleteUser(String userId) {
+		SqlSessionFactory factory = SqlFactoryBuilder.getSqlSessionFactory();
+		SqlSession session = factory.openSession();
+		
+		int deleteCnt = session.delete("user.deleteUser", userId);
+		
+		session.commit();
+		session.close();
+		
+		return deleteCnt;
+	}
+
+	/**
+	* Method : updateUser
+	* 작성자 : pc24
+	* 변경이력 :
+	* @param userVo
+	* @return
+	* Method 설명 : 사용자 수정 
+	*/
+	@Override
+	public int updateUser(UserVo userVo) {
+		SqlSessionFactory factory = SqlFactoryBuilder.getSqlSessionFactory();
+		SqlSession session = factory.openSession();
+		
+		int updateCnt = session.update("user.updateUser", userVo);
+		
+		session.commit();
+		session.close();
+		
+		return updateCnt;
+	}
+	
+	
 }

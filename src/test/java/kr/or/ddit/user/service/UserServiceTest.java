@@ -3,6 +3,10 @@ package kr.or.ddit.user.service;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -33,6 +37,7 @@ public class UserServiceTest {
 	// afterClass
 	
 	private UserServiceInf userService;
+	private final String TEST_USER_ID = "testUser";
 	
 	@BeforeClass
 	public static void beforeClass(){
@@ -48,6 +53,7 @@ public class UserServiceTest {
 	public void before(){
 		System.out.println("before");
 		userService = new UserService();
+		userService.deleteUser(TEST_USER_ID);
 	}
 	
 	@After
@@ -111,5 +117,42 @@ public class UserServiceTest {
 		/***Then***/
 		assertEquals(10, userList.size());
 
+	}
+	
+	/**
+	* Method : insertUserTest
+	* 작성자 : pc24
+	* 변경이력 :
+	* Method 설명 : 사용자 등록 테스트
+	*/
+	@Test
+	public void insertUserTest(){
+		/***Given***/
+		// userVo 생성
+		UserVo userVo = new UserVo();
+		userVo.setUserId("testUser");
+		userVo.setName("testName");
+		userVo.setPass("testPass");
+		userVo.setAddr1("testAddr1");
+		userVo.setAddr2("testAddr2");
+		userVo.setZipCd("11111");
+		String str = "2018-10-12";
+		DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		Date date;
+		try {
+			date = format.parse(str);
+			userVo.setBirth(date);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
+		userVo.setEmail("testUser@gmail.com");
+		userVo.setTel("042-1111-2222");
+
+		/***When***/
+		int insertCnt = userService.insertUser(userVo);
+		
+		/***Then***/
+		assertEquals(1, insertCnt);
 	}
 }
