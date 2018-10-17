@@ -13,6 +13,7 @@
 <title>core.jsp</title>
 </head>
 <body> <!-- core tag prefix : c -->
+	<!-- 스크립틀릿 -> jstl로 변경 -->
 	<%-- jstl 태그 사용법 : <prefix : 태그명> --%>
 	<h2> core set </h2>
 	<%--pageContext.setAttribut("attribute", "cSetValue"); 와 같다 --%>

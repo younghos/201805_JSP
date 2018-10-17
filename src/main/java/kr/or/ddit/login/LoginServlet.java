@@ -67,7 +67,7 @@ public class LoginServlet extends HttpServlet {
 		// 3. session에 사용자 정보등록(as-is : 임의의 userVo 등록, to-be : db에서 조회한 userVo)
 		if(userVo != null && check != false){
 			HttpSession session = req.getSession();
-			session.setAttribute("userVo", userVo);
+			session.setAttribute("S_USER", userVo);
 			
 			RequestDispatcher rd = req.getRequestDispatcher("main.jsp");
 			rd.forward(req, resp);

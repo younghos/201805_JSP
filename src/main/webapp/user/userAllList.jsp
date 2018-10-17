@@ -3,7 +3,8 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -45,20 +46,15 @@
 									<th>생일</th>
 								</tr>
 								<!-- userList loop -->
-								<% List<UserVo> userList = (List<UserVo>)request.getAttribute("userList"); %>
-								<%for(UserVo uv : userList) { %>
+								
+								<c:forEach items="${userList }" var="vo" varStatus="status">
 									<tr>
-										<td><%=uv.getRnum()%></td>
-										<td><%=uv.getUserId() %></td>
-										<td><%=uv.getName()%></td>
-										<%
-											Date birth = uv.getBirth();
-											SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
-											String user_birth = sdf.format(birth);
-										%>
-										<td><%=user_birth %></td>
+										<td>${status.index+1 }</td>
+										<td>${vo.userId }</td>
+										<td>${vo.name }</td>
+										<td><fmt:formatDate value="${vo.birth }" pattern="yyyy-MM-dd" /></td>
 									</tr>
-								<%} %>
+								</c:forEach>
 							</table>
 						</div>
 
