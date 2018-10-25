@@ -10,8 +10,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-import kr.or.ddit.user.dao.UserDao;
-import kr.or.ddit.user.dao.UserDaoInf;
 import kr.or.ddit.user.model.UserVo;
 import kr.or.ddit.util.model.PageVo;
 

@@ -2,13 +2,12 @@ package kr.or.ddit.prod.dao;
 
 import java.util.List;
 
-import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
-
 import kr.or.ddit.db.SqlFactoryBuilder;
 import kr.or.ddit.prod.model.ProdVo;
-import kr.or.ddit.user.model.UserVo;
 import kr.or.ddit.util.model.PageVo;
+
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
 
 public class ProdDao implements ProdDaoInf{
 

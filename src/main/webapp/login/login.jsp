@@ -68,7 +68,7 @@
         <label for="inputEmail" class="sr-only">Email address</label>
         <input type="text" name="user_id" id="userId" class="form-control" placeholder="User Id" required autofocus >
         <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" required="" name="user_pw" class="form-control" placeholder="Password">
+        <input type="password"  name="user_pw" class="form-control" placeholder="Password">
         <!-- 
         	사용자 아이디 기억하기
         	1. remember-me input(checkBox) 파라미터를 login 요청 시 전송

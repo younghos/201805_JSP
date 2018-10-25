@@ -2,7 +2,6 @@ package kr.or.ddit.login;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import kr.or.ddit.encrypt.sha.KISA_SHA256;
 import kr.or.ddit.user.model.UserVo;
 import kr.or.ddit.user.service.UserService;
 import kr.or.ddit.user.service.UserServiceInf;
@@ -63,8 +63,12 @@ public class LoginServlet extends HttpServlet {
 		UserVo userVo = service.selectUser(userId);
 		// 2. db에서 조회한 사용자 비밀번호가 파라미터로 전송된 비밀번호와 동일한지 비교
 		boolean check = false;
-		check = userVo.getPass().equals(userPw);
+//		check = userVo.getPass().equals(userPw);
 		// 3. session에 사용자 정보등록(as-is : 임의의 userVo 등록, to-be : db에서 조회한 userVo)
+		
+		String encryptPass = KISA_SHA256.encrypt(userPw); // 비밀번호 암호화 적용
+		check = userVo.authPass(encryptPass);
+		
 		if(userVo != null && check != false){
 			HttpSession session = req.getSession();
 			session.setAttribute("S_USER", userVo);
