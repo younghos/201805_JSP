@@ -17,7 +17,7 @@
 	<table>
 		<c:forEach begin="1" end="9" var="i">
 			<tr>	
-				<c:forEach begin="2" end="9" var="j">
+				<c:forEach begin="2" end="${param.number }" var="j">
 					<td>${j } * ${i } = ${i*j }</td>
 				</c:forEach>
 			</tr>
