@@ -56,4 +56,41 @@
     <res-type>javax.sql.DataSource</res-type>
     <res-auth>Container</res-auth>
   </resource-ref>
+
+  <filter>
+    <filter-name>loggingFilter</filter-name>
+    <filter-class>kr.or.ddit.filter.LoggingFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>loggingFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  <filter>
+    <filter-name>characterSetFilter</filter-name>
+    <filter-class>kr.or.ddit.filter.CharacterSetFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>characterSetFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  
+   <filter>
+    <filter-name>requestCountFilter</filter-name>
+    <filter-class>kr.or.ddit.filter.RequestCountFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>requestCountFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  
+  <!-- loginfilter -->
+  <filter>
+    <filter-name>loginCheckFilter</filter-name>
+    <filter-class>kr.or.ddit.filter.LoginCheckFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>loginCheckFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  
 </web-app>
