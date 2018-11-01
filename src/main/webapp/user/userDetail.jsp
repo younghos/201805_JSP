@@ -39,7 +39,8 @@
 						<div class="col-sm-10">
 							<c:choose>
 								<c:when test="${userVo.profile != null }">
-									<img src="${userVo.profile }" width="200" height="200"/>
+<%-- 									<img src="${userVo.profile }" width="200" height="200"/> --%>
+									<img src="/fileDownload?userId=${userVo.userId }" />
 								</c:when>
 								<c:otherwise>
 									<img src="/profile/noImage.png" width="200" height="200"/>

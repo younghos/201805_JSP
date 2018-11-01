@@ -1,0 +1,19 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" pageEncoding="UTF-8">
+		<title>velocity</title>
+	</head>
+	<body>
+		application.applicationAttr : $!application.applicationAttr <br>
+		session.sessionAttr : $!session.sessionAttr <br>
+		request.requestAttr : $!request.requestAttr <br>
+		
+		#foreach($ranger in $!rangers)
+			$ranger <br>
+		#end
+		
+		#if($!rangers.size() > 0)
+			0보다 크다
+		#end
+	</body>	
+</html>

@@ -24,7 +24,6 @@
 						</fmt:message>
 					</fmt:bundle>
 				</c:if>
-				
 			</a>
 		</div>
 		<div id="navbar" class="navbar-collapse collapse">

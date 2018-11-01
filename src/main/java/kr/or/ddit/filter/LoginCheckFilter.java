@@ -33,11 +33,11 @@ public class LoginCheckFilter implements Filter{
 		UserVo userVo = (UserVo) session.getAttribute("S_USER");
 		System.out.println(userVo);
 		
-		if(uri.equals("/") || uri.equals("/login/login.jsp") || uri.equals("/dditLogin")){
+		if(uri.equals("/") || uri.equals("/login/login.jsp") || uri.equals("/dditLogin") || uri.startsWith("/css") || uri.startsWith("/js")){
 			chain.doFilter(request, response);
 		} else{
 			if(userVo == null){
-				request.getRequestDispatcher("/login/login.jsp").forward(request, response);
+				request.getRequestDispatcher("/").forward(request, response);
 			} else{
 				chain.doFilter(request, response);
 			}
